@@ -1,10 +1,10 @@
 # OrbitalAutoCropper
 
-Backend APIs
+## Backend APIs
 
 # Login APIs
 | Function                    | Purpose                                                      | Input type                 | Return type  |
-|:---------------------------:|:------------------------------------------------------------:|:--------------------------:|:------------:|
+|:----------------------------|:-------------------------------------------------------------|:---------------------------|:-------------|
 | getGeneralSettings(req,res) | Pull the shared settings from DB                             | req => null                | 2D Array     |
 | getPrivateSettings(req,res) | Pull the user private settings from DB                       | req => user id             | 2D Array     |
 | addNewSettings(req,res)     | Add and save a new setting into the user's private settings  | req => user id             | NULL         |
