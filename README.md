@@ -34,6 +34,30 @@
 | editSettings(req,res)       | Modify an existing saved settings                            | req => user id, setting id | NULL         |
 | deleteSettings(req,res)     | Delete the selected setting from the user's page             | req => user id, setting id | NULL         |
 
+## Device APIs
+| Function                        | Purpose                                                      | Input type                 | Return type  |
+|:--------------------------------|:------------------------------------------------|:-----------------------------|:-------------|
+| getConnectedDevice(req,res)     | Get the basic data on all the registered device | req => user id               | 2D Array |
+| getFullConnectedDevice(req,res) | Get all data related to all registered device   | req => user id               | 2D Array |
+| getInfo(x)                      | Get all data on a specific registered device    | req => device id             | 1D Array |
+| registerNewDevice(req,res)      | Add a new device that is tagged to the user     | req => user id, device id    | DB Action |
+| sendDevice(req,res)             | Send and upload a saved setting to that device  | req => setting id, device id | NULL |
+
+## Rating APIs
+| Function                      | Purpose                                | Input type        | Return type  |
+|:---------------------|:------------------------------------------------|:------------------|:-------------|
+| getTopRated(req,res) | Returns the top 5 most rated settings           | req => null       | 2D Array |
+| getNewPost(req,res)  | Returns the top 5 most recently shared settings | req => null       | 2D Array |
+| upVote(req,res)      | Increase the rating of a setting by 1           | req => setting id | DB Action |
+| downVote(req,res)    | Decrease the rating of a setting by 1           | req => setting id | DB Action |
+
+## Hashing APIs
+| Function                 | Purpose                                                         | Input type     | Return type  |
+|:-------------------------|:----------------------------------------------------------------|:---------------|:-------------|
+| idMaker()                | Creates a random 10 character Alphanumeric code                 | NULL           | String       |
+| hasher(password)         | Use the bcryptjs package to hash the user password input        | String         | String       |
+| checkPass(hash,password) | Use the bcryptjs package to check the input password and hashed | String, String | Boolean      |
+
 
 Database Tables
 
