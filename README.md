@@ -2,7 +2,7 @@
 
 ## Backend APIs
 
-## Login APIs
+### Login APIs
 | Function                     | Purpose                                                     | Input type                      | Return type  |
 |:-----------------------------|:------------------------------------------------------------|:-------------------------------:|:------------:|
 | createAccount(req,res) | Creates a new account when the user registers                     | req => username, password, email    | NULL |
@@ -11,7 +11,7 @@
 | linkMaker(id)          | Makes the verification email link                                 | req => user id                      | String |
 | verify(req,res)        | Verify that the user has confirmed the registered email           | req => user id, authentication code | DB action |
 
-## Profiles APIs
+### Profiles APIs
 | Function                     | Purpose                                                     | Input type                      | Return type  |
 |:-----------------------------|:------------------------------------------------------------|:-------------------------------:|:------------:|
 | initialProfile(req,res)      | Create the starting blank profile object will null values   | req => user id                  | 1D Array |
@@ -23,7 +23,7 @@
 | browseUserProfile(req, res)  | Search for a profile of a specific user                     | req => user id                  | 1D Array |
 | browseUserDetails(req, res)  | Search for the account details of a specific user           | req => user id                  | 1D Array |
 
-## Settings APIs
+### Settings APIs
 | Function                    | Purpose                                                      | Input type                 | Return type  |
 |:----------------------------|:-------------------------------------------------------------|:---------------------------|:-------------|
 | getGeneralSettings(req,res) | Pull the shared settings from DB                             | req => null                | 2D Array     |
@@ -34,7 +34,7 @@
 | editSettings(req,res)       | Modify an existing saved settings                            | req => user id, setting id | NULL         |
 | deleteSettings(req,res)     | Delete the selected setting from the user's page             | req => user id, setting id | NULL         |
 
-## Device APIs
+### Device APIs
 | Function                        | Purpose                                                      | Input type                 | Return type  |
 |:--------------------------------|:------------------------------------------------|:-----------------------------|:-------------|
 | getConnectedDevice(req,res)     | Get the basic data on all the registered device | req => user id               | 2D Array |
@@ -43,7 +43,7 @@
 | registerNewDevice(req,res)      | Add a new device that is tagged to the user     | req => user id, device id    | DB Action |
 | sendDevice(req,res)             | Send and upload a saved setting to that device  | req => setting id, device id | NULL |
 
-## Rating APIs
+### Rating APIs
 | Function                      | Purpose                                | Input type        | Return type  |
 |:---------------------|:------------------------------------------------|:------------------|:-------------|
 | getTopRated(req,res) | Returns the top 5 most rated settings           | req => null       | 2D Array |
@@ -51,7 +51,7 @@
 | upVote(req,res)      | Increase the rating of a setting by 1           | req => setting id | DB Action |
 | downVote(req,res)    | Decrease the rating of a setting by 1           | req => setting id | DB Action |
 
-## Hashing APIs
+### Hashing APIs
 | Function                 | Purpose                                                         | Input type     | Return type  |
 |:-------------------------|:----------------------------------------------------------------|:---------------|:-------------|
 | idMaker()                | Creates a random 10 character Alphanumeric code                 | NULL           | String       |
@@ -59,10 +59,19 @@
 | checkPass(hash,password) | Use the bcryptjs package to check the input password and hashed | String, String | Boolean      |
 
 
-Database Tables
 
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
+## Database Tables
+
+### User details
+
+| Column name        | Data type               | Nullable  | Default | Relationship |
+|:-------------------|:------------------------|:----------|:--------|:-------------|
+| User id            | Variable Character(30)  | NO        | None    | 1-1 with User Device, Profiles
+1-Many with Private settings, Shared Settings |
+| Username           | Variable Character(335) | NO        | None    | None |
+| Password           | Variable Character(335) | NO        | None    | None |
+| Email              | Variable Character(335) | NO        | None    | None |
+| Created on         | TimeStamp               | NO        | None    | None |
+| Verified           | Boolean                 | NO        | False   | None |
+| Authcode           | Variable Character(20)  | NO        | None    | None |
+| Last login         | TimeStamp               | YES       | None    | None |
