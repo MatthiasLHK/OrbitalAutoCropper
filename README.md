@@ -66,8 +66,7 @@
 
 | Column name        | Data type               | Nullable  | Default | Relationship |
 |:-------------------|:------------------------|:----------|:--------|:-------------|
-| User id            | Variable Character(30)  | NO        | None    | 1-1 with User Device, Profiles
-1-Many with Private settings, Shared Settings |
+| User id            | Variable Character(30)  | NO        | None    | 1-1 with User Device, Profiles<br>1-Many with Private settings, Shared Settings |
 | Username           | Variable Character(335) | NO        | None    | None |
 | Password           | Variable Character(335) | NO        | None    | None |
 | Email              | Variable Character(335) | NO        | None    | None |
