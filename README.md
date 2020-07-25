@@ -62,11 +62,11 @@
 
 ## Database Tables
 
-### User details
+### User Details
 
 | Column name        | Data type               | Nullable  | Default | Relationship |
 |:-------------------|:------------------------|:----------|:--------|:-------------|
-| User id            | Variable Character(30)  | NO        | None    | 1-1 with User Device, Profiles<br>1-Many with Private settings, Shared Settings |
+| User id            | Variable Character(30)  | NO        | None    | 1-1 with User Devices, Profiles<br>1-Many with Private settings, Shared Settings |
 | Username           | Variable Character(335) | NO        | None    | None |
 | Password           | Variable Character(335) | NO        | None    | None |
 | Email              | Variable Character(335) | NO        | None    | None |
@@ -74,3 +74,68 @@
 | Verified           | Boolean                 | NO        | False   | None |
 | Authcode           | Variable Character(20)  | NO        | None    | None |
 | Last login         | TimeStamp               | YES       | None    | None |
+
+### User Devices
+
+| Column name        | Data type               | Nullable  | Default | Relationship |
+|:-------------------|:------------------------|:----------|:--------|:-------------|
+| Pair id            | Serial                  | NO        | None    | None |
+| User id            | Variable Character(30)  | NO        | None    | 1-1 with User Details |
+| Device id          | Integer                 | NO        | None    | 1-1 with Devices |
+| Registered on      | TimeStamp               | NO        | None    | None |
+| Power on           | Boolean                 | NO        | False   | None |
+
+### Devices
+
+| Column name        | Data type               | Nullable  | Default | Relationship |
+|:-------------------|:------------------------|:----------|:--------|:-------------|
+| Device id          | Integer                 | NO        | None    | 1-1 with User Devices |
+| Setting name       | Variable Character(20)  | NO        | "Null"  | None |
+| Temperature        | Integer                 | NO        | 0       | None |
+| Water              | Integer                 | NO        | 0       | None |
+| Light              | Integer                 | NO        | 0       | None |
+| Humidity           | Integer                 | NO        | 0       | None |
+| Edited on          | TimeStamp               | YES       | None    | None |
+
+### Profiles
+
+| Column name        | Data type               | Nullable  | Default | Relationship |
+|:-------------------|:------------------------|:----------|:--------|:-------------|
+| User id            | Variable Character(30)  | NO        | None    | 1-1 with User Devices |
+| Name               | Variable Character(20)  | NO        | None    | None |
+| User Bio           | Variable Character(MAX) | YES       | None    | None |
+| Picture Url        | Variable Character(MAX) | NO        | None    | None |
+| Location           | Variable Character(100) | YES       | None    | None |
+| Company            | Variable Character(100) | YES       | None    | None |
+
+### Private settings
+
+| Column name        | Data type               | Nullable  | Default | Relationship |
+|:-------------------|:------------------------|:----------|:--------|:-------------|
+| User id            | Variable Character(30)  | NO        | None    | 1-1 with User Details |
+| Setting id         | Serial                  | NO        | None    | None |
+| Setting name       | Variable Character(20)  | NO        | None    | None |
+| Temperature        | Integer                 | NO        | None    | None |
+| Water              | Integer                 | NO        | None    | None |
+| Light              | Integer                 | NO        | None    | None |
+| Humidity           | Integer                 | NO        | None    | None |
+| Last updated on    | TimeStamp               | NO        | None    | None |
+| Comments           | Variable Character(355) | YES       | None    | None |
+| Edited on          | TimeStamp               | YES       | None    | None |
+| Shared             | Boolean                 | NO        | False   | None |
+
+### Shared Settings
+
+| Column name        | Data type               | Nullable  | Default | Relationship |
+|:-------------------|:------------------------|:----------|:--------|:-------------|
+| User id            | Variable Character(30)  | NO        | None    | 1-1 with User Details |
+| Setting id         | Serial                  | NO        | None    | None |
+| Setting name       | Variable Character(20)  | NO        | None    | None |
+| Temperature        | Integer                 | NO        | None    | None |
+| Water              | Integer                 | NO        | None    | None |
+| Light              | Integer                 | NO        | None    | None |
+| Humidity           | Integer                 | NO        | None    | None |
+| Last updated on    | TimeStamp               | NO        | None    | None |
+| Comments           | Variable Character(355) | YES       | None    | None |
+| Edited on          | TimeStamp               | YES       | None    | None |
+| Rating             | Integer                 | NO        | 0       | None |
